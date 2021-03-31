@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Bonilla Banking
+{% endblock title %}
+
+{% block content %}
+<div class="w-80 ptb-200 container">
+    <div class="row">
+        <div class="col-6 text-end">
+            <p class="display-4 fw-bold flow-text">
+                the first bank to invest in <d class="text-success">you</d>
+            </p>
+
+            <p class="display-8 flow-text text-muted">
+                no more "maintenance" fees from the big banks.
+                enjoy the best interest rates available in the industry -- no joke.
+            </p>
+        </div>
+
+        <div class="col-6">
+            <img class="img-center rounded" src="{% static 'img/tesla-chart.png' %}">
+        </div>
+    </div>
+</div>
+
+<div class="card-text green darken-2 text-white">
+    <div class="row w-80">
+        <div class="col-12">
+            <p class="h1 center fw-bold">
+                but why choose us?
+            </p>
+            <p class="h4 center grey-text text-lighten-3 flow-text w-80 fw-light">
+                we provide the best banking experience in the world through
+                our commitment to three straightforward pillars:
+            </p>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="row w-80">
+        <div class="col-4 center">
+            <i class="fas fa-laptop-house fa-5x"></i><br><br>
+            Accessibility
+        </div>
+
+        <div class="col-4 center">
+            <i class="fas fa-lock fa-5x"></i><br><br>
+            Security
+        </div>
+
+        <div class="col-4 center">
+            <i class="fas fa-dollar-sign fa-5x"></i><br><br>
+            Affordability
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-12 center">
+            <a href="{% url 'learn' %}" class="btn bg-dark text-white">
+                Learn More
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="card-text bg-dark text-white">
+    <div class="row w-80">
+        <div class="col-12">
+            <p class="h2 right fw-bold">
+                what is the press saying?
+            </p>
+        </div>
+    </div><br><br>
+
+    <div class="row w-80">
+        <div class="col-12 text-end">
+            <blockquote class="blockquote fs-4 fst-italic fw-light">
+                <p>the modern bank-slayer and most obvious choice</p>
+            </blockquote>
+            <figcaption class="blockquote-footer fs-6 fw-bold">
+                Elon Musk, <cite title="Source Title">Tesla CEO</cite>
+            </figcaption>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row w-80">
+        <div class="col-12 text-end">
+            <blockquote class="blockquote fs-4 fst-italic fw-light">
+                <p>revolutionizes the entire banking sector</p>
+            </blockquote>
+            <figcaption class="blockquote-footer fs-6 fw-bold">
+                Steven Mark Ryan, <cite title="Source Title">Business Analyst</cite>
+            </figcaption>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row w-80">
+        <div class="col-12 text-end">
+            <blockquote class="blockquote fs-4 fst-italic fw-light">
+                <p>one word: wow.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer fs-6 fw-bold">
+                Ron Burgandy, <cite title="Source Title">Channel 4 News</cite>
+            </figcaption>
+        </div>
+    </div>
+</div>
+
+<div class="card-text">
+    <div class="row">
+        <div class="col-6"><br><br>
+            <p class="h1 fw-bold w-80">
+                have a burning question?<br>we've got you.
+            </p>
+
+            <p class="h5 flow-text text-muted w-80">
+                reach out at your leisure or checkout our support page for more. we're available 24/7.
+            </p><br><br>
+
+            <p class="center w-80">
+                <a href="{% url 'support' %}" class="btn btn-outline-success">
+                    Support
+                </a>
+            </p>
+        </div>
+        
+        <div class="col-6">
+            <img class="img-fluid float-end" src="{% static '/img/tech-support1.png' %}">
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+<li><h5><a href="{% url 'index' %}" class="white-text text-decoration-none">Home</a></h5></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'learn' %}">Learn More</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'support' %}">Support</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'login' %}">Login</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'sign-up' %}">Sign Up</a></li>
+{% endblock footer %}
