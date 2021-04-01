@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Success | Bonilla Banking
+{% endblock title %}
+
+{% block content %}
+<div class="w-80 ptb-75">
+    <div class="row">
+        <div class="col-12">
+            <p class="display-4 fw-bold">
+                Success!
+            </p>
+
+            <p class="h4">
+                Message received. We will get back to you with a response
+                in 3 to 5 business hours, guaranteed.
+            </p>
+            
+            <img class="pt-4 img-fluid hedgehog" src="{% static '/img/tesla-hedgehog2.jpg' %}">
+
+            <p class="center pt-5">
+                <a class="btn btn-outline-success" href="{% url 'index' %}">Return Home</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+<li><h5><a href="{% url 'index' %}" class="hover white-text text-decoration-none">Home</a></h5></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'learn' %}">Learn More</a></li>
+<li><a class="white-text text-decoration-none" href="{% url 'support' %}">Support</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'login' %}">Login</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'sign-up' %}">Sign Up</a></li>
+{% endblock footer %}

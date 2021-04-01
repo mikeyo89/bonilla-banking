@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Support | Bonilla Banking
+{% endblock title %}
+
+{% block content %}
+<div class="ptb-100 w-90">
+    <div class="row">
+        <div class="col-12">
+            <p class="display-4 fw-bold">
+                Hi!<br>
+                How can we help?
+            </p>
+
+            <p class="h4 text-muted pt-2">
+                Fill out the form below and we will get back to you
+                within 3 to 5 business hours.
+            </p>
+        </div>
+    </div>
+
+    <div class="row pt-100">
+        <form action="{% url 'support' %}" method="POST" class="col-12">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.first_name }}
+                    <label class="control-label" for="{{ form.first_name.id_for_label }}">
+                        {{ form.first_name.label }}
+                    </label>
+                </div>
+                <div class="col s6 input-field">
+                    {{ form.last_name }}
+                    <label class="control-label" for="{{ form.last_name.id_for_label }}">
+                        {{ form.last_name.label }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 input-field">
+                    {{ form.email }}
+                    <label class="control-label" for="{{ form.email_address.id_for_label }}">
+                        {{ form.email.label }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 input-field">
+                    {{ form.subject }}
+                    <label class="control-label" for="{{ form.subject.id_for_label }}">
+                        {{ form.subject.label }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 input-field materialize-textarea">
+                    {{ form.message }}
+                    <label class="control-label" for="{{ form.message.id_for_label }}">
+                        {{ form.message.label }}
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success waves-effect" name="submit">Send</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+<li><h5><a href="{% url 'index' %}" class="hover white-text text-decoration-none">Home</a></h5></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'learn' %}">Learn More</a></li>
+<li><a class="white-text text-decoration-none" href="{% url 'support' %}">Support</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'login' %}">Login</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'sign-up' %}">Sign Up</a></li>
+{% endblock footer %}
