@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Learn More | Bonilla Banking
+{% endblock title %}
+
+{% block content %}
+<div class="w-80 ptb-200">
+    <div class="row w-80">
+        <div class="col-12 w-80">
+            <p class="display-4 fw-bold flow-text center">
+                our 3 commitments to <d class="text-success">you.</d>
+            </p>
+
+            <p class="display-8 flow-text center">
+                at bonilla banking, our mission is to provide the best value in the market.
+                through our customer-centric approach, you can rest easy knowing you've made
+                the right choice.
+            </p>
+        </div>
+    </div>
+
+    <p class="pt-50"></p>
+
+    <div class="row w-80">
+        <div class="col-4 center">
+            <i class="fas fa-laptop-house fa-4x"></i><br><br>
+            Accessibility
+        </div>
+
+        <div class="col-4 center">
+            <i class="fas fa-lock fa-4x"></i><br><br>
+            Security
+        </div>
+
+        <div class="col-4 center">
+            <i class="fas fa-dollar-sign fa-4x"></i><br><br>
+            Value
+        </div>
+    </div>
+</div>
+
+<div class="card-text green darken-2 text-white">
+    <div class="row w-60">
+        <div class="col-5 center">
+            <i class="fas fa-laptop-house fa-6x"></i>
+        </div>
+
+        <div class="col-7 left">
+            <p class="display-5 fw-bold">
+                Accessibility to all.
+            </p>
+
+            <p class="lead flow-text left pt-1">
+                We believe everyone should have equal access to our platform.
+                To that end, Bonilla Banking does not discriminate against any
+                type of demographic. Get started from anywhere by opening any type
+                of account for free through our <a href="{% url 'sign-up' %}" class="text-decoration-none fw-bold text-white">sign up</a> portal.
+            </p>
+        </div>
+    </div>
+
+    <br><hr><br>
+
+    <div class="row w-60">
+        <div class="col-5 center">
+            <i class="fas fa-lock fa-6x"></i>
+        </div>
+
+        <div class="col-7 left">
+            <p class="display-5 fw-bold">
+                Security that is unmatched.
+            </p>
+            <p class="lead flow-text left pt-1">
+                With our military-grade encryption, Bonilla Banking can provide the fastest
+                peer-to-peer, business-to-peer, and business-to-business interactions in the industry.
+                With our revolutionary <b>bank profiles</b>, sending and receiving money is just a
+                few clicks away!
+            </p>
+        </div>
+    </div>
+
+    <br><hr><br>
+
+    <div class="row w-60">
+        <div class="col-5 center">
+            <i class="fas fa-dollar-sign fa-6x"></i>
+        </div>
+
+        <div class="col-7 left">
+            <p class="display-5 fw-bold">
+                Value that is second to none.
+            </p>
+            <p class="lead flow-text left pt-1">
+                At Bonilla Banking, our main focus is <b>you</b>. That is why our business-model
+                focuses on investing on what matters most: the money in your pocket. With our advanced
+                and world-leading analysts, we can provide a yearly interest rate of 7% on your savings account!
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card-text w-60">
+    <div class="row center">
+        <div class="col-12">
+            <p class="display-4 fw-bold flow-text">
+                sound great?
+            </p>
+
+            <p class="h4 text-muted">
+                let's get started by opening a free account today.
+            </p>
+        </div>
+    </div>
+
+    <div class="row center pt-50">
+        <div class="col-12">
+            <a class="btn btn-outline-success" href="{% url 'sign-up' %}">Open an account</a>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block footer %}
+<li><h5><a href="{% url 'index' %}" class="hover white-text text-decoration-none">Home</a></h5></li>
+<li><a class="white-text text-decoration-none" href="{% url 'learn' %}">Learn More</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'support' %}">Support</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'login' %}">Login</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'sign-up' %}">Sign Up</a></li>
+{% endblock footer %}
