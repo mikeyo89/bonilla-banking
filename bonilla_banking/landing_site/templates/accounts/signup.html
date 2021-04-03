@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sign Up | Bonilla Banking
+{% endblock title %}
+
+{% block content %}
+<div class="w-80 ptb-75">
+    <div class="row">
+        <div class="col-12">
+            <p class="display-4 fw-bold">
+                Sign Up
+            </p>
+
+            <p class="h4">
+                Enter the details below in order to sign up for our revolutionary
+                service!
+            </p>
+        </div>
+    </div>
+
+    <div class="row pt-100">
+        <form action="{% url 'landing:sign-up' %}" method="POST" class="col-12">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.first_name }}
+                    <label class="control-label" for="{{ form.first_name.id_for_label }}">
+                        {{ form.first_name.label }}
+                    </label>
+                </div>
+                <div class="col s6 input-field">
+                    {{ form.last_name }}
+                    <label class="control-label" for="{{ form.last_name.id_for_label }}">
+                        {{ form.last_name.label }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 input-field">
+                    {{ form.email }}
+                    <label class="control-label" for="{{ form.email.id_for_label }}">
+                        {{ form.email.label }}
+                    </label>
+                    <span class="helper-text" data-error="Please enter a valid email address." data-success="Good.">Used for login.</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.username }}
+                    <label class="control-label" for="{{ form.username.id_for_label }}">
+                        {{ form.username.label }}
+                    </label>
+                    <span class="helper-text" data-error="Please enter a valid username." data-success="Good.">Used for money transfers.</span>
+                </div>
+
+                <div class="col s6 input-field">
+                    {{ form.password }}
+                    <label class="control-label" for="{{ form.password.id_for_label }}">
+                        {{ form.password.label }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.phone_number }}
+                    <label class="control-label" for="{{ form.phone_number.id_for_label }}">
+                        {{ form.phone_number.label }}
+                    </label>
+                    <span class="helper-text" data-error="Enter digits only." data-success="Good.">Digits only: xxxxxxxxxx</span>
+                </div>
+
+                <div class="col s6 input-field">
+                    {{ form.date_of_birth }}
+                    <label class="control-label" for="{{ form.date_of_birth.id_for_label }}">
+                        {{ form.date_of_birth.label }}
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success waves-effect" name="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+<li><h5><a href="{% url 'landing:index' %}" class="hover white-text text-decoration-none">Home</a></h5></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:learn' %}">Learn More</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:support' %}">Support</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:login' %}">Login</a></li>
+<li><a class="white-text text-decoration-none" href="{% url 'landing:sign-up' %}">Sign Up</a></li>
+{% endblock footer %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.datepicker');
+        var options = {
+            'yearRange': 45,
+            'maxDate': new Date(),
+            'format': 'mm/dd/yyyy',
+            'showClearBtn': true,
+            'defaultDate': new Date(1999, 01, 01),
+        }
+        var instances = M.Datepicker.init(elems, options);
+  });
+</script>
+{% endblock scripts %}
