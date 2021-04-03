@@ -61,7 +61,7 @@ Bonilla Banking
 
     <div class="row">
         <div class="col-12 center">
-            <a href="{% url 'learn' %}" class="btn bg-dark text-white">
+            <a href="{% url 'landing:learn' %}" class="btn bg-dark text-white">
                 Learn More
             </a>
         </div>
@@ -127,7 +127,7 @@ Bonilla Banking
             </p><br><br>
 
             <p class="center w-80">
-                <a href="{% url 'support' %}" class="btn btn-outline-success">
+                <a href="{% url 'landing:support' %}" class="btn btn-outline-success">
                     Support
                 </a>
             </p>
@@ -141,9 +141,9 @@ Bonilla Banking
 {% endblock content %}
 
 {% block footer %}
-<li><h5><a href="{% url 'index' %}" class="white-text text-decoration-none">Home</a></h5></li>
-<li><a class="hover white-text text-decoration-none" href="{% url 'learn' %}">Learn More</a></li>
-<li><a class="hover white-text text-decoration-none" href="{% url 'support' %}">Support</a></li>
-<li><a class="hover white-text text-decoration-none" href="{% url 'login' %}">Login</a></li>
-<li><a class="hover white-text text-decoration-none" href="{% url 'sign-up' %}">Sign Up</a></li>
+<li><h5><a href="{% url 'landing:index' %}" class="white-text text-decoration-none">Home</a></h5></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:learn' %}">Learn More</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:support' %}">Support</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:login' %}">Login</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:sign-up' %}">Sign Up</a></li>
 {% endblock footer %}
