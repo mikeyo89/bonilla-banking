@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="author" content="Bonilla Banking">
+    <meta name="description" content="Bonilla Banking is banking without a bank. We revolutionize banking to be practical, efficient, and cost-effective -- and pass those benefits to you. Open an account today and get $1000 on us.">
+    <meta name="keywords" content="Bank">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Materialize CSS -->
+    <link type="text/css" rel="stylesheet" href="{% static '/css/materialize.min.css' %}">
+
+    <!-- Materialize JS -->
+    <script src="{% static '/js/materialize.min.js' %}"></script>
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/icon type" href="{% static '/img/favicon.ico' %}">
+    
+    <!-- FontAwesome CSS-->
+    <script src="https://kit.fontawesome.com/422a829379.js" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel='stylesheet' href="{% static '/css/main.css' %}">
+
+    <!-- Custom JS -->
+    <link rel='stylesheet' href="{% static '/js/main.js' %}">
+
+    {% block css %}
+    {% endblock css %}
+
+    {% block js %}
+    {% endblock js %}
+
+</head>
+
+<body>
+
+    <header>
+        <title>
+            {% block title %}
+            Bonilla Banking
+            {% endblock title %}
+        </title>
+    </header>
+
+    <!-- Top navigation bar-->
+    <div class="navbar-fixed">
+        <nav class="{% if user.is_authenticated %}nav-extended {% endif %}green darken-2 text-white fw-bold">
+            <div class="nav-wrapper">
+                <a href="{% url 'main:dashboard' %}" class="text-uppercase ps-5 text-decoration-none white-text">B o n i l l a &nbsp;&nbsp;&nbsp;B a n k i n g</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'main:dashboard' %}" class="text-decoration-none white-text">profile & settings</a></li>
+                    <li><a href="{% url 'main:logout' %}" class="text-decoration-none white-text">sign out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'landing:login' %}" class="text-decoration-none white-text">log in</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="nav-content" style="padding-left: 20px;">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#test1" class="text-decoration-none">Open an account</a></li>
+                    <li class="tab"><a href="#test2" class="text-decoration-none">Start Bill Pay</a></li>
+                    <li class="tab"><a href="#test3" class="text-decoration-none">Transfer Money</a></li>
+                    <li class="tab"><a href="#test4" class="text-decoration-none">Make A Payment</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        </nav>
+    </div>
+
+    <!-- Side navigation bar-->
+    <ul id="slide-out" class="sidenav sidenav-fixed z-depth-0">
+        {% if user.is_authenticated %}
+        <li><a class="subheader text-decoration-none">Our Services</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-wallet"></i>Accounts</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-receipt"></i>Bills</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-hand-holding-usd"></i></i>Transfers</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-dollar-sign"></i>Payments</a></li>
+        {% endif %}
+    </ul>
+    {% if user.is_authenticated %}
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    {% endif %}
+
+    <main class="w-90">
+        <p class="display-6 pt-5">
+            {% block header %}
+            {% endblock header %}
+        </p>
+        
+        <p class="lead pt-1">
+            {% block description %}
+            {% endblock description %}
+        </p>
+
+        <p class="pt-2 fs-5">
+            {% block content %}
+            {% endblock content %}
+        </p>
+    </main>
+
+    <footer class="page-footer green darken-2 text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Bonilla Banking</h5>
+                    <p class="grey-text text-lighten-4">
+                        <i class="far fa-copyright"></i> {% now 'Y' %} Bonilla Banking. All Rights Reserved.<br><br>
+                        Phone: <a href="tel:9802401564"></a>(980) 240-1564<br> 
+                        Email: <a href="mailto:info@bonillabanking.com">info@bonillabanking.com</a>
+                    </p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <ul>
+                        {% if user.is_authenticated %}
+                        <li class="pb-1"><a class="white-text text-decoration-none h5" href="{% url 'main:dashboard' %}">Accounts</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Bills</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Transfers</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Payments</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Profile & Settings</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Sign Out</a></li>
+                        {% else %}
+                        <li><a href="{% url 'landing:login' %}" class="white-text text-decoration-none h5">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var instances = M.Sidenav.init(document.querySelectorAll('.sidenav'));
+  });
+</script>
+
+</html>

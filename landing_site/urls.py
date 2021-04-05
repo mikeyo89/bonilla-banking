@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import *
 
+app_name = 'landing_site'
+
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('learn-more/', LearnView.as_view(), name='learn'),

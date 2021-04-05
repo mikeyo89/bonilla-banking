@@ -1,0 +1,10 @@
+o	Project Dev. Environment 	-- March 15, 2021	✔️
+o	Base Landing Site		    -- March 30, 2021	✔️
+o	User Signup			        -- April 05, 2021	✔️
+o	User Profile Management 	-- April 05, 2021	
+o	Base Main Site			    -- April 10, 2021	
+o	Accounts Creation           -- April 15, 2021	
+o	Accounts Management      	-- April 15, 2021	
+o	P2P Funds Transfer	    	-- April 20, 2021	
+o	Recurring/Bill Payments 	-- April 25, 2021	
+o	Payments Management	        -- April 30, 2021

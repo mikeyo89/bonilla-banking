@@ -1,0 +1,13 @@
+{% extends 'main_base.html'%}
+
+{% block title %}
+Online Banking | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Logout successful.
+{% endblock header %}
+
+{% block content %}
+<a href="{% url 'landing:index' %}" class="btn btn-outline-success">Return Home</a>
+{% endblock content %}

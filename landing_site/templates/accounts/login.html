@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Log In | Bonilla Banking
+{% endblock title %}
+
+{% block content %}
+<div class="w-80 ptb-75">
+    <div class="row">
+        <div class="col-12">
+            <p class="display-4 fw-bold center">
+                Log In
+            </p>
+        </div>
+    </div>
+
+    <div class="row pt-100">
+        <form action="{% url 'landing:login' %}" method="POST" class="col-12">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-outline-success waves-effect" name="submit">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer %}
+<li><h5><a href="{% url 'landing:index' %}" class="hover white-text text-decoration-none">Home</a></h5></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:learn' %}">Learn More</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:support' %}">Support</a></li>
+<li><a class="white-text text-decoration-none" href="{% url 'landing:login' %}">Login</a></li>
+<li><a class="hover white-text text-decoration-none" href="{% url 'landing:sign-up' %}">Sign Up</a></li>
+{% endblock footer %}

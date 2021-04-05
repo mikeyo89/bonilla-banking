@@ -1,0 +1,100 @@
+{% extends 'main_base.html'%}
+
+{% block title %}
+Online Banking | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Welcome, {{ user.first_name }}!
+{% endblock header %}
+
+
+{% block description %}
+This page is a summary of your account -- a dashboard.
+{% endblock description %}
+
+{% block content %}
+<div class="card">
+    <div class="card-content">
+        <p class="fs-2">
+            Accounts
+        </p>
+
+        <ul class="pt-2">
+            {% if accounts > 0 %}
+
+            {% for account in accounts %}
+            <div class="row">
+                <div class="col">
+                    <li>Account 1</li>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            No accounts.
+            {% endif %}
+        </ul>
+
+        <p class="fs-2 pt-3">
+            Upcoming Bills
+        </p>
+
+        <ul class="pt-2">
+            {% if bills > 0 %}
+
+            {% for bill in bills %}
+            <div class="row">
+                <div class="col">
+                    <li>Bill 1</li>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            No upcoming bills.
+            {% endif %}
+        </ul>
+
+        <p class="fs-2 pt-3">
+            Recent Transfers
+        </p>
+
+        <ul class="pt-2">
+            {% if transfers > 0 %}
+
+            {% for transfer in transfers %}
+            <div class="row">
+                <div class="col">
+                    <li>Trasfer 1</li>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            No recent transfers.
+            {% endif %}
+        </ul>
+
+        <p class="fs-2 pt-3">
+            Recent Payments
+        </p>
+
+        <ul class="pt-2">
+            {% if payments > 0 %}
+
+            {% for payment in payments %}
+            <div class="row">
+                <div class="col">
+                    <li>Payment 1</li>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            No recent payments.
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}
