@@ -5,7 +5,7 @@ from django.views import generic
 from django.contrib.auth import views, authenticate, login
 
 from .models import SupportModel
-from .forms import SupportForm, AccountForm, LoginForm
+from .forms import SupportForm, AccountForm
 from django.contrib.auth import get_user_model
 
 class IndexView(generic.TemplateView):
