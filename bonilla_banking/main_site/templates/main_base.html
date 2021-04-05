@@ -51,26 +51,60 @@
 
     <!-- Top navigation bar-->
     <div class="navbar-fixed">
-        <nav class="green darken-2 text-white fw-bold">
+        <nav class="{% if user.is_authenticated %}nav-extended {% endif %}green darken-2 text-white fw-bold">
             <div class="nav-wrapper">
                 <a href="{% url 'main:dashboard' %}" class="text-uppercase ps-5 text-decoration-none white-text">B o n i l l a &nbsp;&nbsp;&nbsp;B a n k i n g</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    {% if user.is_authenticated %}
                     <li><a href="{% url 'main:dashboard' %}" class="text-decoration-none white-text">profile & settings</a></li>
-                    <li><a href="{% url 'main:dashboard' %}" class="text-decoration-none white-text">sign out</a></li>
+                    <li><a href="{% url 'main:logout' %}" class="text-decoration-none white-text">sign out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'landing:login' %}" class="text-decoration-none white-text">log in</a></li>
+                    {% endif %}
                 </ul>
             </div>
+            {% if user.is_authenticated %}
+            <div class="nav-content" style="padding-left: 20px;">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab"><a href="#test1" class="text-decoration-none">Open an account</a></li>
+                    <li class="tab"><a href="#test2" class="text-decoration-none">Start Bill Pay</a></li>
+                    <li class="tab"><a href="#test3" class="text-decoration-none">Transfer Money</a></li>
+                    <li class="tab"><a href="#test4" class="text-decoration-none">Make A Payment</a></li>
+                </ul>
+            </div>
+            {% endif %}
         </nav>
     </div>
 
     <!-- Side navigation bar-->
-    <ul id="slide-out" class="sidenav fixed">
-        <li><a class="text-decoration-none hoverable" href="{% url 'main:dashboard' %}">Accounts</a></li>
-      </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
+    <ul id="slide-out" class="sidenav sidenav-fixed z-depth-0">
+        {% if user.is_authenticated %}
+        <li><a class="subheader text-decoration-none">Our Services</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-wallet"></i>Accounts</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-receipt"></i>Bills</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-hand-holding-usd"></i></i>Transfers</a></li>
+        <li><a class="text-decoration-none" href="{% url 'main:dashboard' %}"><i class="fas fa-dollar-sign"></i>Payments</a></li>
+        {% endif %}
+    </ul>
+    {% if user.is_authenticated %}
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    {% endif %}
 
     <main class="w-90">
-        {% block content %}
-        {% endblock content %}
+        <p class="display-6 pt-5">
+            {% block header %}
+            {% endblock header %}
+        </p>
+        
+        <p class="lead pt-1">
+            {% block description %}
+            {% endblock description %}
+        </p>
+
+        <p class="pt-2 fs-5">
+            {% block content %}
+            {% endblock content %}
+        </p>
     </main>
 
     <footer class="page-footer green darken-2 text-white">
@@ -86,7 +120,16 @@
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <ul>
-                        <li><h5><a href="{% url 'main:dashboard' %}" class="white-text text-decoration-none">Accounts</a></h5></li>
+                        {% if user.is_authenticated %}
+                        <li class="pb-1"><a class="white-text text-decoration-none h5" href="{% url 'main:dashboard' %}">Accounts</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Bills</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Transfers</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Payments</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Profile & Settings</a></li>
+                        <li><a class="white-text text-decoration-none h6" href="{% url 'main:dashboard' %}">Sign Out</a></li>
+                        {% else %}
+                        <li><a href="{% url 'landing:login' %}" class="white-text text-decoration-none h5">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
