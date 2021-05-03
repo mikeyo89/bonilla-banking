@@ -1,0 +1,94 @@
+{% extends 'main_base.html'%}
+
+{% block title %}
+Start Bill Pay | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Start Bill Pay
+{% endblock header %}
+
+{% block description %}
+Fill out the form to create a recurring (bill pay) transaction.
+<br>Note: A connection between payee and payer must be created (via <a href="" class="text-decoration-none">here</a>.)
+{% endblock description %}
+
+{% block content %}
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+ 
+<div class="card">
+    <div class="card-content">
+        <form action="{% url 'main:create-bill' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.account }}
+                    <label class="control-label" for="{{ form.account.id_for_label }}">
+                        {{ form.account.label }}
+                    </label>
+                </div>
+
+                <div class="input-field col s6">
+                    {{ form.amount }}
+                    <label class="control-label" for="{{ form.amount.id_for_label }}">
+                        {{ form.amount.label }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.destination }}
+                    <label class="control-label" for="{{ form.destination.id_for_label }}">
+                        {{ form.destination.label }}
+                    </label>
+                    <span class="helper-text">Add recipients <a href="{% url 'main:create-connection' %}" class="text-decoration-none">here</a>.</span>
+                </div>
+
+                <div class="col s6 input-field">
+                    {{ form.scheduled_date }}
+                    <label class="control-label" for="{{ form.scheduled_date.id_for_label }}">
+                        {{ form.scheduled_date.label }}
+                    </label>
+                    <span class="helper-text">*Leave empty for instant one-time payment.</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success">Start Bill Pay</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.datepicker');
+        var ms = new Date().getTime() + 86400000;
+        var tomorrow = new Date(ms);
+
+        var options = {
+            'yearRange': 3,
+            'minDate': tomorrow,
+            'format': 'mm/dd/yyyy',
+            'showClearBtn': true,
+            'defaultDate': null,
+        }
+        var instances = M.Datepicker.init(elems, options);
+  });
+</script>
+{% endblock scripts %}

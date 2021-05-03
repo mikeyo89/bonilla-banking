@@ -7,7 +7,6 @@ class SupportForm(forms.ModelForm):
     """
     Form for the support model. Live site responses will be processed with this form.
     """
-
     def __init__(self, *args, **kwargs):
         super(SupportForm, self).__init__(*args, **kwargs)
 
@@ -49,10 +48,6 @@ class AccountForm(forms.ModelForm):
         self.fields['email'].label = 'Email Address'
         self.fields['email'].required = True
 
-        self.fields['username'].widget = forms.TextInput()
-        self.fields['username'].label = 'Username'
-        self.fields['username'].required = True
-
         self.fields['password'].widget = forms.PasswordInput()
         self.fields['password'].label = 'Password'
         self.fields['password'].required = True
@@ -77,7 +72,7 @@ class AccountForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ['email', 'username', 'password', 'first_name', 'last_name', 'phone_number', 'date_of_birth']
+        fields = ['email', 'password', 'first_name', 'last_name', 'phone_number', 'date_of_birth']
 
     def save(self, commit=True):
         # Save the provided password in hashed format

@@ -1,0 +1,48 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+Add a recipient | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Add a recipient
+{% endblock header %}
+
+{% block description %}
+Fill out the form to add a Bill Pay recipient.
+{% endblock description %}
+
+{% block content %}
+<div class="card">
+    <div class="card-content">
+        <form action="{% url 'main:create-connection' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.corporation }}
+                    <label class="control-label" for="{{ form.corporation.id_for_label }}">
+                        {{ form.corporation.label }}
+                    </label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="account_num" type="text" class="validate">
+                    <label for="account_num">Bill Registration Number</label>
+                    <span class="helper-text lead">Note: Should be located in an invoice or receipt.</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+      });
+</script>
+{% endblock scripts %}

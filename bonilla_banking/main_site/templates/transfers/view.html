@@ -1,0 +1,84 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+Transfers | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Your Transfers
+{% endblock header %}
+
+{% block description %}
+Manage all transfers between personal accounts here.
+{% endblock description %}
+
+{% block content %}
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
+<div class="card">
+    <div class="card-content">
+        <p class="fs-2 pt-3">
+            Recent Transfers
+        </p>
+
+        <ul class="pt-3">
+            {% if transfers %}
+            <li>
+                <div class="row fw-bold fs-4">
+                    <div class="col-3">
+                        From
+                    </div>
+
+                    <div class="col-3">
+                        To
+                    </div>
+
+                    <div class="col-3">
+                        Amount ($)
+                    </div>
+
+                    <div class="col-3">
+                        Transfer Date
+                    </div>
+                </div>
+            </li>
+            {% for transfer in transfers %}
+            <li>
+                <div class="row fs-5">
+                    <div class="col-3">
+                        {{ transfer.origin }}
+                    </div>
+
+                    <div class="col-3">
+                        {{ transfer.destination }}
+                    </div>
+
+                    <div class="col-3">
+                        ${{ transfer.amount }}
+                    </div>
+
+                    <div class="col-3">
+                        {{ transfer.date_created }}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+
+            {% else %}
+            No recent transfers.
+            {% endif %}
+        </ul>
+
+        <p class="pt-3 pb-3">
+            <a href="{% url 'main:create-transfer' %}" class='btn btn-outline-success'>Make a transfer</a>
+        </p>
+    </div>
+</div>
+{% endblock content %}

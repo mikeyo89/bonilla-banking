@@ -1,0 +1,107 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+Your Profile | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Your Profile
+{% endblock header %}
+
+{% block description %}
+Manage your personal profile details and settings here.
+{% endblock description %}
+
+{% block content %}
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+ 
+<div class="card">
+    <div class="card-content">
+        <p class="fs-3">
+            Account Settings
+        </p>
+
+        <div class="row pt-4">
+            <div class="col-6">
+                <div class="input-field">
+                    <input value="{{ request.user.first_name }}" id="first_name" type="text" class="validate" disabled>
+                    <label for="first_name">First Name</label>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="input-field">
+                    <input value="{{ request.user.last_name }}" id="last_name" type="text" class="validate" disabled>
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="input-field">
+                    <input value="{% if request.user.address %}{{ request.user.address }}{% else %}None on file.{% endif %}" id="address" type="text" class="validate" disabled>
+                    <label for="address">Physical Address</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-2 pb-4">
+            <div class="col-6">
+                <div class="input-field">
+                    <input value="{{ request.user.formatted_phone }}" id="phone_number" type="text" class="validate" disabled>
+                    <label for="phone_number">Phone Number</label>
+                </div>
+            </div>
+
+            <div class="col-5">
+                <div class="input-field">
+                    <input value="{{ request.user.date_of_birth }}" id="date_of_birth" type="text" class="validate" disabled>
+                    <label for="date_of_birth">Date of Birth</label>
+                </div>
+            </div>
+
+            <div class="col-1 pt-4">
+                <a href="{% url 'main:update-settings' %}" class="btn btn-outline-primary">Edit</a>
+            </div>
+        </div>
+
+        <p class="fs-3 pt-4 fw-bold">
+            Security Settings
+        </p>
+
+        <div class="row pt-4">
+            <div class="col-6">
+                <div class="input-field">
+                    <input value="{{ request.user.email }}" id="email" type="text" class="validate" disabled>
+                    <label for="email">Email Address</label>
+                </div>
+            </div>
+
+            <div class="col-5">
+                <div class="input-field">
+                    <input value="**************" id="password" type="text" class="validate" disabled>
+                    <label for="password">Password</label>
+                </div>
+            </div>
+
+            <div class="col-1 pt-4">
+                <a href="{% url 'main:update-security' %}" class="btn btn-outline-warning">Edit</a>
+            </div>
+        </div>
+
+        <div class="row pt-4">
+            <div class="col-4 offset-8 fst-italic">
+                <p>Last active: {{ request.user.last_login }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

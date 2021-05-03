@@ -1,0 +1,140 @@
+{% extends 'main_base.html'%}
+
+{% block title %}
+View Accounts | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+
+{% if account %}
+Account Management
+{% else %}
+Your Accounts
+{% endif %}
+
+{% endblock header %}
+
+{% block description %}
+
+{% if account %}
+Manage your {{ account.account_type }} account from here.
+{% else %}
+Check out your open accounts here.
+{% endif %}
+
+{% endblock description %}
+
+{% block content %}
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
+<div class="card">
+    <div class="card-content">
+        {% if account %}
+            <p class="fs-2">
+                <b>{{ account.account_type.capitalize }} - {{ account.account_number }}</b>
+            </p>
+
+            <p class="fs-4 pt-2">
+                Nickname: <i>{{ account.name }}</i>
+            </p>
+
+            <p class="fs-2 pt-4 pb-4">
+                Recent Transactions
+            </p>
+
+            {% if transactions %}
+                <div class="row fw-bold fs-4">
+                    <div class="col-3">
+                        Date
+                    </div>
+
+                    <div class="col-6">
+                        Description
+                    </div>
+
+                    <div class="col-3">
+                        Amount ($)
+                    </div>
+                </div>
+
+                {% for transaction in transactions %}
+                <div class="row fs-5">
+                    <div class="col-3">
+                        {{ transaction.date_created }}
+                    </div>
+
+                    <div class="col-6">
+                        {{ transaction.description }}
+                    </div>
+
+                    <div class="col-3">
+                        {% if transaction.label == 'credit' %}
+                        <span class="text-success">+${{ transaction.amount }}</span>
+                        <br><div class="text-muted fw-bold">${{ transaction.new_balance }}</div>
+                        {% else %}
+                        <span class="text-danger">-${{ transaction.amount }}</span>
+                        <br><div class="text-muted fw-bold">${{ transaction.new_balance }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+
+            {% else %}
+                No recent transactions.
+            {% endif %}
+
+        {% else %}
+
+        <p class="fs-2 pt-3 pb-3">
+            All Accounts
+        </p>
+        
+            {% if accounts_count > 0 %}
+                <ul class="pt-2 lead">
+                    <li class="pt-3">
+                        <div class="row fw-bold">
+                            <div class="col-8">
+                                Account Name
+                            </div>
+
+                            <div class="col-4">
+                                Account Balance ($)
+                            </div>
+                        </div>
+                    </li>
+
+                {% for account in accounts %}
+                    <a href="{% url 'main:accounts' pk=account.pk %}" class="text-decoration-none">
+                        <li>
+                            <div class="row hoverable pt-3 pb-3">
+                                <div class="col-8">
+                                    {{ account.name }}
+                                </div>
+
+                                <div class="col-4">
+                                    ${{ account.balance }}
+                                </div>
+                            </div>
+                        </li>
+                    </a>
+                {% endfor %}
+
+            {% else %}
+                No accounts.
+            {% endif %}
+        </ul>
+
+        <p class="pt-4">
+            <a href="{% url 'main:open-account' %}" class='btn btn-outline-primary'>Open an account</a>
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

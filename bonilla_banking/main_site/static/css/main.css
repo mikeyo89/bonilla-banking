@@ -1,7 +1,24 @@
+header, main {
+    padding-left: 200px;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0px;
+    }
+}
+
+.sidenav.sidenav-fixed {
+    max-height: 375px;
+    margin-top: 155px;
+    padding-top: 75px;
+    width: fit-content;
+}
+
 .hover {
     color: white;
     opacity: 80%;
-    transition:opacity 0.8s
+    transition: opacity 0.8s
 }
 
 .hover:hover{
@@ -17,14 +34,6 @@
     margin-right: auto;
     width: 50%;
   }
-
-.hedgehog {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    max-height: 500px;
-}
 
 .w-60 {
     width: 60%;
@@ -42,6 +51,9 @@
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    min-height: 500px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .pt-50 {

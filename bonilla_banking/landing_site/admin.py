@@ -1,9 +1,7 @@
 from django.contrib import admin
-from .models import AccountModel
 from django.contrib.auth.admin import UserAdmin
 
 from django import forms
-from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -20,7 +18,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = AccountModel
-        fields = ('email', 'username')
+        fields = ['email']
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -48,7 +46,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = AccountModel
-        fields = ('email', 'username', 'password', 'first_name', 'last_name', 'date_of_birth', 'phone_number', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'first_name', 'last_name', 'date_of_birth', 'phone_number', 'is_active', 'is_admin')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -65,7 +63,7 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'username', 'password', 'date_joined', 'last_login', 'is_admin')
+    list_display = ('email', 'password', 'date_joined', 'last_login', 'is_admin')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -80,7 +78,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('email', 'date_of_birth', 'password1', 'password2'),
         }),
     )
-    search_fields = ('email', 'username')
+    search_fields = ['email']
     ordering = ('email',)
     filter_horizontal = ()
     readonly_fields = ('id', 'date_joined', 'last_login')

@@ -1,0 +1,130 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+Bill Pay | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Your Bills
+{% endblock header %}
+
+{% block description %}
+Manage your bills and registered recipients here.
+{% endblock description %}
+
+{% block content %}
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
+<div class="card">
+    <div class="card-content">
+        <p class="fs-2 pt-3">
+            Upcoming Bills
+        </p>
+
+        <ul class="pt-3">
+            {% if bills %}
+            <li>
+                <div class="row fw-bold fs-4">
+                    <div class="col-3">
+                        Account
+                    </div>
+
+                    <div class="col-3">
+                        Merchant
+                    </div>
+
+                    <div class="col-3">
+                        Amount ($)
+                    </div>
+
+                    <div class="col-3">
+                        Scheduled Date
+                    </div>
+                </div>
+            </li>
+            {% for bill in bills %}
+            <a href="{% url 'main:view-bill' pk=bill.pk %}" class="text-decoration-none"><li>
+                <div class="row fs-5">
+                    <div class="col-3">
+                        {{ bill.account }}
+                    </div>
+
+                    <div class="col-3">
+                        {{ bill.destination }}
+                    </div>
+
+                    <div class="col-3">
+                        <span class="text-danger">-${{ bill.amount }}</span>
+                    </div>
+
+                    <div class="col-3">
+                        {% if bill.scheduled_date %}
+                        {{ bill.scheduled_date }}
+                        {% else %}
+                        <i>Paid</i>
+                        {% endif %}
+                    </div>
+                </div>
+            </li></a>
+            {% endfor %}
+
+            {% else %}
+            No upcoming bills.
+            {% endif %}
+        </ul>
+
+        <p class="pt-3 pb-3">
+            <a href="{% url 'main:create-bill' %}" class='btn btn-outline-success'>Start Bill Pay</a>
+        </p>
+
+        <hr>
+
+        <p class="fs-2 pt-3">
+            Registered Payees
+        </p>
+
+        <ul class="pt-3">
+            {% if connections %}
+            <li>
+                <div class="row fw-bold fs-4">
+                    <div class="col-6">
+                        Corporation/Payee
+                    </div>
+
+                    <div class="col-6">
+                        Date Registered
+                    </div>
+                </div>
+            </li>
+            {% for connection in connections %}
+            <li>
+                <div class="row fs-5">
+                    <div class="col-6">
+                        {{ connection.corporation }}
+                    </div>
+
+                    <div class="col-6">
+                        {{ connection.date_created }}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+
+            {% else %}
+            No registered payees.
+            {% endif %}
+
+            <p class="pt-3">
+                <a href="{% url 'main:create-connection' %}" class='btn btn-outline-success'>Add a payee</a>
+            </p>
+        </ul>
+    </div>
+</div>
+{% endblock content %}

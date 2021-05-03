@@ -1,0 +1,82 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+Update Settings | Bonilla Banking
+{% endblock title %}
+
+{% block css %}
+{{ form.media }} <!-- needed for JS/GoogleMaps lookup -->
+{% endblock css %}
+
+{% block header %}
+Update Settings
+{% endblock header %}
+
+{% block description %}
+Fill out the form to update your profile settings.
+{% endblock description %}
+
+{% block content %}
+<div class="card">
+    <div class="card-content">
+        <p class="fs-3">
+            Account Settings
+        </p>
+
+        <form action="{% url 'main:update-settings' %}" method="POST">
+            {% csrf_token %}
+            <div class="row pt-4">
+                <div class="col-6">
+                    <div class="input-field">
+                        {{ form.first_name }}
+                        <label class="control-label" for="{{ form.first_name.id_for_label }}">
+                            {{ form.first_name.label }}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="input-field">
+                        {{ form.last_name }}
+                        <label class="control-label" for="{{ form.last_name.id_for_label }}">
+                            {{ form.last_name.label }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <label class="control-label" for="{{ form.address.id_for_label }}">
+                        {{ form.address.label }}
+                    </label>
+                    {{ form.address }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-field">
+                        {{ form.phone_number }}
+                        <label class="control-label" for="{{ form.phone_number.id_for_label }}">
+                            {{ form.phone_number.label }}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="input-field">
+                        {{ form.date_of_birth }}
+                        <label class="control-label" for="{{ form.date_of_birth.id_for_label }}">
+                            {{ form.date_of_birth.label }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{% url 'main:profile' %}" class="btn btn-outline-danger">Go Back</a> &nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-outline-success">Update Settings</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

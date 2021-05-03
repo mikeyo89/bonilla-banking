@@ -1,0 +1,84 @@
+{% extends 'main_base.html'%}
+
+{% block title %}
+Make A Transfer | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Make a transfer
+{% endblock header %}
+
+{% block description %}
+Fill out the form below to make a transfer between your personal accounts.
+{% endblock description %}
+
+{% block content %}
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+ 
+<div class="card">
+    <div class="card-content">
+        <form action="{% url 'main:create-transfer' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.account }}
+                    <label class="control-label" for="{{ form.account.id_for_label }}">
+                        {{ form.account.label }}
+                    </label>
+                </div>
+
+                <div class="col s6 input-field">
+                    {{ form.amount }}
+                    <label class="control-label" for="{{ form.amount.id_for_label }}">
+                        {{ form.amount.label }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.destination }}
+                    <label class="control-label" for="{{ form.destination.id_for_label }}">
+                        {{ form.destination.label }}
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success">Transfer Capital</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.datepicker');
+        var ms = new Date().getTime() + 86400000;
+        var tomorrow = new Date(ms);
+
+        var options = {
+            'yearRange': 3,
+            'minDate': tomorrow,
+            'format': 'mm/dd/yyyy',
+            'showClearBtn': true,
+            'defaultDate': null,
+        }
+        var instances = M.Datepicker.init(elems, options);
+  });
+</script>
+{% endblock scripts %}

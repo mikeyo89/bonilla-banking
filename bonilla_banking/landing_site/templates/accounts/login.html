@@ -6,6 +6,15 @@ Log In | Bonilla Banking
 
 {% block content %}
 <div class="w-80 ptb-75">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-center alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <div class="row">
         <div class="col-12">
             <p class="display-4 fw-bold center">

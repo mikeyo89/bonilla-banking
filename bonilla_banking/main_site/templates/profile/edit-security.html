@@ -1,0 +1,58 @@
+{% extends 'main_base.html' %}
+
+{% block title %}
+Update Security | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Update Security
+{% endblock header %}
+
+{% block description %}
+Fill out the form to update your security settings.
+{% endblock description %}
+
+{% block content %}
+<div class="card">
+    <div class="card-content">
+        <p class="fs-3">
+            Security Settings
+        </p>
+
+        <form action="{% url 'main:update-security' %}" method="POST">
+            {% csrf_token %}
+            <div class="row pt-4">
+                <div class="col-12">
+                    <div class="input-field">
+                        <input value="{{ request.user.email }}" id="email" type="text" class="validate" disabled>
+                        <label for="email">Email Address</label>
+                        <span class="helper-text fw-bold">*This cannot be changed!</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-field">
+                        {{ form.password }}
+                        <label class="control-label" for="{{ form.password.id_for_label }}">
+                            {{ form.password.label }}
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="input-field">
+                        {{ form.password2 }}
+                        <label class="control-label" for="{{ form.password2.id_for_label }}">
+                            {{ form.password2.label }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'main:profile' %}" class="btn btn-outline-danger">Go Back</a> &nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-outline-success">Change Password</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

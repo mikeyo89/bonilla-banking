@@ -1,0 +1,47 @@
+{% extends 'main_base.html'%}
+
+{% block title %}
+Open An Account | Bonilla Banking
+{% endblock title %}
+
+{% block header %}
+Open an account
+{% endblock header %}
+
+{% block description %}
+Fill out the form to open your very own account.
+{% endblock description %}
+
+{% block content %}
+<div class="card">
+    <div class="card-content">
+        <form action="{% url 'main:open-account' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s6 input-field">
+                    {{ form.name }}
+                    <label class="control-label" for="{{ form.name.id_for_label }}">
+                        {{ form.name.label }}
+                    </label>
+                </div>
+
+                <div class="input-field col s6">
+                    {{ form.account_type }}
+                    <label>{{ form.account_type.label }}</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-success">Open account</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+</script>
+{% endblock scripts %}

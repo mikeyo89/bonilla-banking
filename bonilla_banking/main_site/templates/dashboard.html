@@ -4,6 +4,180 @@
 Online Banking | Bonilla Banking
 {% endblock title %}
 
+{% block header %}
+Welcome, {{ user.first_name }}!
+{% endblock header %}
+
+{% block description %}
+This page is a summary of your account -- a dashboard.
+{% endblock description %}
+
 {% block content %}
-Hi.
+
+{% if messages %}
+     {% for message in messages %}
+         <div class="text-center alert alert-{{ message.tags }}">
+             {{ message|safe }}
+         </div>
+     {% endfor %}
+ {% endif %}
+
+<div class="card">
+    <div class="card-content">
+        <p class="fs-2">
+            Your Accounts
+        </p>
+
+        <ul class="pt-4">
+            {% if accounts_count > 0 %}
+            <li>
+                <div class="row fw-bold fs-4">
+                    <div class="col-3">
+                        Account Type
+                    </div>
+
+                    <div class="col-6">
+                        Account Nickname
+                    </div>
+
+                    <div class="col-3">
+                        Balance ($)
+                    </div>
+                </div>
+            </li>
+            {% for account in accounts %}
+            <a href="{% url 'main:accounts' pk=account.pk %}" class="text-decoration-none">
+                <li>
+                    <div class="row hoverable pt-3 pb-3 fs-5">
+                        <div class="col-3">
+                            {{ account.account_type.capitalize }}
+                        </div>
+
+                        <div class="col-6">
+                            {{ account.name }}
+                        </div>
+
+                        <div class="col-3">
+                            ${{ account.balance }}
+                        </div>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+
+            {% else %}
+            No accounts.
+            {% endif %}
+        </ul>
+
+        <hr>
+
+        <p class="fs-2 pt-3">
+            Upcoming Bills
+        </p>
+
+        <ul class="pt-4">
+            {% if bills_count > 0 %}
+            <li>
+                <div class="row fw-bold fs-4">
+                    <div class="col-3">
+                        Account
+                    </div>
+
+                    <div class="col-3">
+                        Merchant
+                    </div>
+
+                    <div class="col-3">
+                        Amount ($)
+                    </div>
+
+                    <div class="col-3">
+                        Scheduled Date
+                    </div>
+                </div>
+            </li>
+            {% for bill in bills %}
+            <li>
+                <div class="row fs-5">
+                    <div class="col-3">
+                        {{ bill.account }}
+                    </div>
+
+                    <div class="col-3">
+                        {{ bill.destination }}
+                    </div>
+
+                    <div class="col-3">
+                        <span class="text-danger">-${{ bill.amount }}</span>
+                    </div>
+
+                    <div class="col-3">
+                        {{ bill.scheduled_date }}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+
+            {% else %}
+            No upcoming bills.
+            {% endif %}
+        </ul>
+
+        <div class="pt-3"></div>
+        <hr>
+
+        <p class="fs-2 pt-3">
+            Recent Transfers
+        </p>
+
+        <ul class="pt-4">
+            {% if transfers_count > 0 %}
+            <li>
+                <div class="row fw-bold fs-4">
+                    <div class="col-3">
+                        From
+                    </div>
+
+                    <div class="col-3">
+                        To
+                    </div>
+
+                    <div class="col-3">
+                        Amount ($)
+                    </div>
+
+                    <div class="col-3">
+                        Date Transfered
+                    </div>
+                </div>
+            </li>
+            {% for transfer in transfers %}
+            <li>
+                <div class="row fs-5 pt-1 pb-1">
+                    <div class="col-3">
+                        {{ transfer.origin }}
+                    </div>
+
+                    <div class="col-3">
+                        {{ transfer.destination }}
+                    </div>
+
+                    <div class="col-3">
+                        ${{ transfer.amount }}
+                    </div>
+
+                    <div class="col-3">
+                        {{ transfer.date_created }}
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+
+            {% else %}
+            No recent transfers.
+            {% endif %}
+        </ul>
+    </div>
+</div>
 {% endblock content %}

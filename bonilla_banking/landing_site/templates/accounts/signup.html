@@ -6,6 +6,15 @@ Sign Up | Bonilla Banking
 
 {% block content %}
 <div class="w-80 ptb-75">
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-center alert alert-{{ message.tags }}">
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <div class="row">
         <div class="col-12">
             <p class="display-4 fw-bold">
@@ -38,22 +47,12 @@ Sign Up | Bonilla Banking
             </div>
 
             <div class="row">
-                <div class="col s12 input-field">
+                <div class="col s6 input-field">
                     {{ form.email }}
                     <label class="control-label" for="{{ form.email.id_for_label }}">
                         {{ form.email.label }}
                     </label>
                     <span class="helper-text" data-error="Please enter a valid email address." data-success="Good.">Used for login.</span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s6 input-field">
-                    {{ form.username }}
-                    <label class="control-label" for="{{ form.username.id_for_label }}">
-                        {{ form.username.label }}
-                    </label>
-                    <span class="helper-text" data-error="Please enter a valid username." data-success="Good.">Used for money transfers.</span>
                 </div>
 
                 <div class="col s6 input-field">
@@ -78,6 +77,7 @@ Sign Up | Bonilla Banking
                     <label class="control-label" for="{{ form.date_of_birth.id_for_label }}">
                         {{ form.date_of_birth.label }}
                     </label>
+                    <span class="helper-text" data-error="Please click on the textbox.">Please click on the textbox for a date select.</span>
                 </div>
             </div>
             <button type="submit" class="btn btn-outline-success waves-effect" name="submit">Submit</button>

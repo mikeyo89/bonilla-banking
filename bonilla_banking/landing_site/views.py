@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.contrib.messages.views import SuccessMessageMixin
 
 from django.views import generic
-from django.contrib.auth import views, authenticate, login
+from django.contrib.auth import views
 
 from .models import SupportModel
 from .forms import SupportForm, AccountForm

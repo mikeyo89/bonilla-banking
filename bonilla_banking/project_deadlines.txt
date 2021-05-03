@@ -1,10 +1,33 @@
 o	Project Dev. Environment 	-- March 15, 2021	✔️
 o	Base Landing Site		    -- March 30, 2021	✔️
 o	User Signup			        -- April 05, 2021	✔️
-o	User Profile Management 	-- April 05, 2021	
-o	Base Main Site			    -- April 10, 2021	
-o	Accounts Creation           -- April 15, 2021	
-o	Accounts Management      	-- April 15, 2021	
-o	P2P Funds Transfer	    	-- April 20, 2021	
-o	Recurring/Bill Payments 	-- April 25, 2021	
-o	Payments Management	        -- April 30, 2021
+o	User Profile Management 	-- April 05, 2021	✔️
+o	Base Main Site			    -- April 10, 2021	✔️
+o	Accounts Creation           -- April 15, 2021	✔️
+o	Accounts Management      	-- April 15, 2021	✔️
+o	P2P Funds Transfer	    	-- April 20, 2021	✔️
+o	Recurring/Bill Payments 	-- April 25, 2021	✔️
+o	Payments Management	        -- April 30, 2021   ✔️
+
+User Story:
+
+The system should have basic functionalities, such as login/logout, view accounts, transfer funds, pay bills, utilities, etc.
+
+More specifically, customers with an online bank account should be able to log in to the system by entering a valid username
+and password and log out of the system when they are done with their work.
+
+Using View Account, customers can view up-to date balance information about deposits (saving/checking), credit cards, etc.
+
+Customers can also view transaction history records with a maximum retention period of 180 days.
+
+Transfer Funds allows customers to transfer funds between authorized personal accounts. The requested transfer takes place
+immediately or at a selected future date specified by the customer. Customers are allowed to view and/or terminate pending transfers.
+
+Customers can use the online bill payment service to pay their bills by debiting their account.
+
+The payment is made to payee corporations that the customer has registered with internet banking by using the registered bill.
+But with new payee corporations that the customer has not registered, this payment can be made immediately or at a specific date.
+
+The utility allows customers to change passwords and the secure delivery contact information.
+
+Customers can also change the personal information of their online profile.
